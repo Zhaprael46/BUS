@@ -71,7 +71,8 @@ public class Register {
             while(password.getText().equals(password2.getText())){
                 int status = pst.executeUpdate();
 
-                if(status ==1){
+                if(status ==1)
+                {
                     firstName.setText("");
                     lastName.setText("");
                     tf_email.setText("");
@@ -82,7 +83,8 @@ public class Register {
                     Parent root = FXMLLoader.load(getClass().getResource("login.fxml"));
                     stage.setTitle("login");
                     stage.setScene(new Scene(root));
-                }else{
+                }else
+                {
                     JOptionPane.showMessageDialog(null, "record failed");
                 }
             }
@@ -93,7 +95,8 @@ public class Register {
             password.setText("");
             password2.setText("");
             
-        }catch(Exception e){
+        }catch(Exception e)
+        {
             e.getStackTrace();
             e.getCause();
         }

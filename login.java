@@ -38,11 +38,33 @@ public class login {
 
     @FXML
     void Login(ActionEvent event) throws IOException {
+    try{
+    String host = "jdbc:mysql://localhost:3306/busaccount";
+    String user = "root";
+    String pw = "Nml_19092002";
+    Connection con = DriverManager.getConnection(host, user, pw);
+    Statement st = con.createStatement();
+    String email = tf_email.getText();
+    String pass = String.valueOf(password.getText());
+    String sql = "Select * from busaccount.account where email = '" + email + "'and password = '"+pass+"'";
+    ResultSet rs = st.executeQuery(sql);
+    if(rs.next())
+    {
         Stage stage = (Stage) noAccount.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("PembelianTiket.fxml"));
-        stage.setTitle("Pembelian Tiket");
+        Parent root = FXMLLoader.load(getClass().getResource("PemebelianTiket.fxml"));
+        stage.setTitle("After Login");
         stage.setScene(new Scene(root));
+    }else
+    {
+        loginMessage.setText("username/password yang dimasukan salah");
     }
+}   catch(Exception e)
+    
+    {
+    e.getStackTrace();
+    e.getMessage();
+    }
+}
    
 
     @FXML
@@ -75,7 +97,7 @@ public class login {
     ResultSet rs = st.executeQuery(sql);
     if(rs.next()){
         Stage stage = (Stage) noAccount.getScene().getWindow();
-        Parent root = FXMLLoader.load(getClass().getResource("afterlogin.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("PemebelianTiket.fxml"));
         stage.setTitle("After Login");
         stage.setScene(new Scene(root));
     }else{
